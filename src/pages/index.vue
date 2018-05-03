@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="index-right">
-			<div class="banner">banner</div>
+			<slide-show :slides="slides" :inv="invTime" @onchange="onchangeDosomething"></slide-show>
 			<div class="index-board-list">
 				<dl class="index-board-item" v-for="item in boardList">
 					<dt><!--<img :src="item.src"/>--></dt>
@@ -41,109 +41,63 @@
 </template>
 
 <script>
+	import slideShow from "../components/slideshow"
+	
 	export default {
+		components : {
+			slideShow
+		},
 		created : function(){
-			this.$http.get('/api/boardList')
-			.then(function(data){
-				console.log(data)
+			var _this = this;
+			this.$http.get('/api/getNewList')
+			.then(function(res){
+				_this.newList = res.data;
+			},function(err){
+				console.log(err)
+			});
+			this.$http.get('/api/getProductList')
+			.then(function(res){
+				_this.productList = res.data;
+			},function(err){
+				console.log(err)
+			});
+			this.$http.get('/api/getBoardList')
+			.then(function(res){
+				_this.boardList = res.data;
 			},function(err){
 				console.log(err)
 			})
 		},
 		data () {
 			return {
-				productList : {
-					pc:{
-						'title':'PC产品',
-						'last':false,
-						'list' : [
-							{
-								'name':'数据统计',
-								'url':'#'
-							},
-							{
-								'name':'数据预测',
-								'url':'#'
-							},
-							{
-								'name':'数据分析',
-								'url':'#'
-							},
-							{
-								'name':'广告发布',
-								'url':'#'
-							}
-						]
-					},
-					app:{
-						'title':'APP产品',
-						'last':true,
-						'list' : [
-							{
-								'name':'数据统计',
-								'url':'#',
-								'hot':true
-							},
-							{
-								'name':'数据预测',
-								'url':'#'
-							},
-							{
-								'name':'数据分析',
-								'url':'#'
-							},
-							{
-								'name':'广告发布',
-								'url':'#'
-							}
-						]
-					}
-				},
-				newList : [
+				invTime : 4000,
+				slides : [
 					{
-						'name':'数据统计',
-						'url':'#',
-						'hot':true
-					},
-					{
-						'name':'数据预测',
-						'url':'#'
-					},
-					{
-						'name':'数据分析',
-						'url':'#'
-					},
-					{
-						'name':'广告发布',
-						'url':'#'
+						"src":require("../assets/slideShow/pic1.jpg"),
+						"title":"xxx1",
+						"href":"#"
+					},{
+						"src":require("../assets/slideShow/pic2.jpg"),
+						"title":"xxx2",
+						"href":"#"
+					},{
+						"src":require("../assets/slideShow/pic3.jpg"),
+						"title":"xxx3",
+						"href":"#"
+					},{
+						"src":require("../assets/slideShow/pic4.jpg"),
+						"title":"xxx4",
+						"href":"#"
 					}
 				],
-				boardList:[
-					{
-						title:'产品一',
-						desciption:'产品一',
-						src:'../assets/images/1.png',
-						saleout:false
-					},
-					{
-						title:'产品二',
-						desciption:'产品二',
-						src:'../assets/images/2.png',
-						saleout:false
-					},
-					{
-						title:'产品三',
-						desciption:'产品三',
-						src:'../assets/images/3.png',
-						saleout:false
-					},
-					{
-						title:'产品四',
-						desciption:'产品四',
-						src:'assets/images/4.png',
-						saleout:false
-					},
-				]
+				productList : {},
+				newList : [],
+				boardList:[]
+			}
+		},
+		methods : {
+			onchangeDosomething () {
+				console.log("onchangeDosomething")
 			}
 		}
 	}

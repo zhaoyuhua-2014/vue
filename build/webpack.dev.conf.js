@@ -39,7 +39,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       : false,
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
-    proxyTable: config.dev.proxyTable,
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
@@ -67,8 +66,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }
     ])
   ]
-})
-var jsonServer = require("json-server");
+});
+//方法一
+/*var jsonServer = require("json-server");
 var apiServer = jsonServer.create();
 var apiRouter = jsonServer.router("db.json");
 var minddlewares = jsonServer.defaults()
@@ -76,6 +76,36 @@ console.log(config.dev.proxyTable)
 apiServer.use(minddlewares);
 apiServer.use("/api",apiRouter);
 apiServer.listen(config.dev.port + 1,function(){
+	console.log('json server is runing')
+})*/
+//方法二
+var express = require("express");
+var apiServer = express();
+var bodyParser = require("body-parser");
+apiServer.use(bodyParser.urlencoded({extended:true}));
+apiServer.use(bodyParser.json());
+var apiRouter = express.Router();
+var fs = require("fs");
+apiRouter.get("/",function(req,res) {
+	res.json({message:'hooray! welcome to our api!'})
+});
+apiRouter.route('/:apiName')
+.all(function(req,res){
+	fs.readFile('./db.json','utf-8',function(err,data){
+		if(err) throw err
+		var data = JSON.parse(data);
+		if (data[req.params.apiName]) {
+			res.json(data[req.params.apiName])
+		}else{
+			res.send("no such api name")
+		}
+	})
+})
+
+apiServer.use("/api",apiRouter);
+
+apiServer.listen(config.dev.port + 1,function(){
+	console.log(config.dev.port + 1)
 	console.log('json server is runing')
 })
 
