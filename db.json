@@ -1,0 +1,28 @@
+{
+	"boardList" : [
+		{
+			"title":"产品一",
+			"desciption":"产品一",
+			"src":"../assets/images/1.png",
+			"saleout":false
+		},
+		{
+			"title":"产品二",
+			"desciption":"产品二",
+			"src":"../assets/images/2.png",
+			"saleout":false
+		},
+		{
+			"title":"产品三",
+			"desciption":"产品三",
+			"src":"../assets/images/3.png",
+			"saleout":false
+		},
+		{
+			"title":"产品四",
+			"desciption":"产品四",
+			"src":"assets/images/4.png",
+			"saleout":false
+		}
+	]
+}
