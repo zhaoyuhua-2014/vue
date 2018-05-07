@@ -90,5 +90,8 @@
 			"name":"广告发布",
 			"url":"#"
 		}
-	]
+	],
+	"login" : {
+		"name":"zhaoyuhua"
+	}
 }
