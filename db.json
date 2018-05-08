@@ -75,23 +75,49 @@
 	"getNewList" : [
 		{
 			"name":"数据统计",
-			"url":"#",
+			"url":"/detail/count",
 			"hot":true
 		},
 		{
 			"name":"数据预测",
-			"url":"#"
+			"url":"/detail/analysis"
 		},
 		{
 			"name":"数据分析",
-			"url":"#"
+			"url":"/detail/forecast"
 		},
 		{
 			"name":"广告发布",
-			"url":"#"
+			"url":"/detail/publish"
 		}
 	],
 	"login" : {
 		"name":"zhaoyuhua"
-	}
+	},
+	"getDetailProductList" : [
+		{
+			"name":"数据统计",
+			"path":"#",
+			"icon":"../assets/images/1.png",
+			"active":false
+		},
+		{
+			"name":"数据预测",
+			"path":"#",
+			"icon":"../assets/images/2.png",
+			"active":false
+		},
+		{
+			"name":"数据分析",
+			"path":"#",
+			"icon":"../assets/images/3.png",
+			"active":false
+		},
+		{
+			"name":"广告发布",
+			"path":"#",
+			"icon":"../assets/images/4.png",
+			"active":false
+		}
+	]
 }

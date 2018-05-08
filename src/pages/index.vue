@@ -32,7 +32,7 @@
 					<dd class="index-board-item-inner">
 						<h2>{{item.title}}</h2>
 						<p>{{item.desciption}}</p>
-						<div class="index-board-button"><a href="#/detail/analysis" class="button">立即购买</a></div>
+						<div class="index-board-button"><a href="/detail/count" class="button">立即购买</a></div>
 					</dd>
 				</dl>
 			</div>
